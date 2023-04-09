@@ -1,10 +1,11 @@
 
-Problem statement:
+**Problem statement:**
 
 When you signup on Cognito screen, a native user gets created in the user pool. If you federate the user pool through a social provider like Google, then you can also sign in using your google account. This way, same email id can end up with 2 different users - a native cognito user, and a federated Google user. What we want is that, only 1 user exists in the user pool for a given email id. 
 
 
-Solution:
+**Solution:**
+
 Create a Lambda and register it as Congito user pool's Pre Sign up trigger.
 When a Google federated user is logging in, check if native user already exists for that email,
  and link the Google user with existing native user using Cognito api's 'admin_link_provider_for_user' function.
