@@ -1,0 +1,84 @@
+import boto3
+
+client = boto3.client('cognito-idp')
+
+
+def lambda_handler(event, context):
+    print("Event: ", event)
+    if event['triggerSource'] == 'PreSignUp_AdminCreateUser':
+        print('STOP RECURSION') 
+        return event #Creating a user from lambda trigger, can further trigger a chain of user creation and their triggers, hence stop recursion for admin create used below
+        
+    email = event['request']['userAttributes']['email']
+
+    response = findExistingUsersByEmail(event, email)
+    
+    print('Native user search result: ', response['Users'])
+    
+    if not response['Users']:
+        print('Creating native user for email: ', email)
+        signup_response = client.admin_create_user(
+                    UserPoolId=event["userPoolId"],
+                    Username=email,
+                    UserAttributes=[
+                        {
+                            'Name': 'email',
+                            'Value': email
+                        },
+                    ],
+                    TemporaryPassword='LondonBristol#3019',
+                    ForceAliasCreation=False,
+                    MessageAction='SUPPRESS',
+                    DesiredDeliveryMediums=[
+                        'EMAIL'
+                    ]
+                )
+         
+        print("Native user creation response: ", signup_response)
+
+    response = findExistingUsersByEmail(event, email)
+    
+    for user in response['Users']:
+        provider = None
+        provider_value = None
+        # Check which provider it is using
+        if event['userName'].startswith('Facebook_'):
+            provider = 'Facebook'
+            provider_value = event['userName'].split('_')[1]
+        elif event['userName'].startswith('google_'):
+            provider = 'Google'
+            provider_value = event['userName'].split('_')[1]
+
+        print('Linking accounts from Email {} with provider {}: '.format(
+            email,
+            provider_value
+        ))
+
+        # If the signup is coming from a social provider, link the accounts
+        # with admin_link_provider_for_user function
+        if provider and provider_value:
+            print('> Linking user: ', user)
+            print('> Provider Id: ', provider_value)
+            response = client.admin_link_provider_for_user(
+                UserPoolId=event['userPoolId'],
+                DestinationUser={
+                    'ProviderName': 'Cognito',
+                    'ProviderAttributeValue': user['Username']
+                },
+                SourceUser={
+                    'ProviderName': provider,
+                    'ProviderAttributeName': 'Cognito_Subject',
+                    'ProviderAttributeValue': provider_value
+                }
+            )
+    # Return the event to continue the workflow
+    return event
+    
+def findExistingUsersByEmail(event, email):
+    return client.list_users(
+        UserPoolId=event['userPoolId'],
+        AttributesToGet=[
+            'email',
+        ],
+        Filter='email = "{}"'.format(email)
+    )
