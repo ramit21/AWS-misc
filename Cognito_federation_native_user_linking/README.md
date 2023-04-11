@@ -13,7 +13,7 @@ When a Google federated user is logging in, check if native user already exists 
 And if native user does not exist, then first create a native user with a temporary password using  'admin_create_user',
 and then link Google login as above. 
 
-When creating a user from lambda trigger, just beware of infinite recursion that can happen due to user creation and their triggers. Same has been handled in code based on event trigger source.
+When creating a user from lambda trigger, just beware of infinite recursion that can happen due to user creation and their triggers. Same has been handled in code based on event trigger source. Whe this happens, you will get a timeout with **TooManyRequestsException**. You can relate this to StackOverflow exception with Java applications.
 
 Like Google, other federations like Facebook can also be handled. The admin_link_provider_for_user supports linking of max 5 users. 
 
