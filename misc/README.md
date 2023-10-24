@@ -17,6 +17,8 @@ Q. Mobile app that supports offline sync when internet comes back.
 
 A. Amplify Data store helps sync data on your device with AWS storage.
 
+## GenAI with AWS
+
 Q. How are new Foundation Models different from traditional models in AI?
 
 A. You would need one traditional model each for respective use cases of text generation, summarisation, Q&A, chatbot etc. But with FMs, a single model is capable of doing it all.
@@ -50,9 +52,9 @@ This data is stored as Vectors, supported on Aurora Postgres, RDS PostGres, and 
 **Fine tuning** a LLM model is a very taxing process. Hence first try these techniques of prompt engneering before you actually try to fine tune a LLM model:
 1. Zero shot vs N-shot: Feed multiple similar questions with answers so that model can learn from them, and then ask your question.
 2. Chain of thought prompting: QnA type of conversation to arrive at a conclusion.
-3. Self consistency: 
-4. General knowledge:
-5. ReAct (Reasoning and Action taking):
+3. Self consistency: By adhering to the principle of self-consistency, engineers and designers aim to create systems and products that are reliable, efficient, and free from internal contradictions. 
+4. General knowledge: General knowledge in prompt engineering is foundational and serves as a basis upon which engineers can build their expertise and specialization. It ensures that engineers have the core knowledge required to understand and address the challenges and opportunities within their specific engineering domain.
+5. ReAct(Reasoning and Action taking): Engineers first reason on how the system should behave, and then act on any deviations.
 6. RAG 
  
 If you still need to fine tune, then use **PEFT** technique, ie parameter efficient fine tuning. PEFT creates task specific pluggable adapters that can be plugged into original model.
