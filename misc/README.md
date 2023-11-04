@@ -37,9 +37,13 @@ llm = Bedrock(
 )
 ```
 Bedrock also help create chatbots, as it can help save a memory of the chat that has happened thus far.
+
 3. **Amazon CodeWhisperer**: Plugin installed in your IDE will interact with Amazon CodeWhisperer and generate code suggestions for you. You just specify the problem statement as a comment in plain English, and code will be created for you along with unit test cases. Also performs security scanning and OWASP top 10 checks with suggested remediation. Multiple code suggestions are presented, and the developer can choose the best suggestion. Suggested code also tries to match coding style of the already present code.
+
 4. **Stable diffusion**: Both AWS BedRock and Sagemaker Jumpstart support Stable diffusion mdoels. Diffusion models are used to generate image from a text. The process includes converting text into tokens, adding noise, and then de noise to generate the image.
+
 5. **DJL**: DJL (Deep Java Library) is an open-source, high-level, Java-based deep learning framework that simplifies the development of machine learning and deep learning models for Java developers. It's designed to be user-friendly and provides support for various deep learning libraries, such as TensorFlow, PyTorch, and MXNet. AWS Sagemaker (as well as some other AWS services) supports use of DJL, making it easy to train models using DJL and then deploy them on SageMaker endpoints.
+
 6. **DeepSpeed**: is an optimization library for deep learning to help engineers train large deep learning models faster and with less computational resources. AWS supports use of DJL along with DeepSpeed to serve LLM models with subsecond latency.
 
 Q. What is Retreival Augmented Store (RAG)?
