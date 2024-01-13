@@ -66,3 +66,16 @@ If you still need to fine tune, then use **PEFT** technique, ie parameter effici
 **LLM Evaluation Metrics**:
 1. **Rouge**: Used for text summarisation. Compare a summary to one or more reference summaries.
 2. **Blue Score**: Used for text translation. compare to human generated translations.
+
+**Semantic caching** is a technique that can be used to improve the performance of large language model (LLM) applications while reducing expenses1. It involves storing precomputed representations of frequently used language elements in a cache, which can significantly reduce the time it takes to retrieve data, reduce API call expenses, and improve scalability.
+
+Techniques to improve LLM results in increasing order of cost and time:
+1. Prompt engineering
+2. Use RAG
+3. Fine tune the model to your domain use case (eg. LoRA technique)
+4. Train the LLM model from scratch (v. expensive)
+
+**RHLF**: Reinforcement Learning from Human Feedback (RLHF) is a technique that combines reinforcement learning with human feedback to improve the performance of large language model (LLM) applications.
+
+**Vector databases** are a powerful solution for managing unstructured data types including text, audio, images, and videos in numerical form. They have gained traction in the AI sphere due to their ability to efficiently manage similarity searches across thousands of columns. Vector databases store and provide access to structured and unstructured data, such as text or images, alongside their vector embeddings. Vector embeddings are the data’s numerical representation as a long list of numbers that captures the original data object’s semantic meaning. Because similar objects are close together in vector space, the similarity of data objects can be calculated based on the distance between the data object’s vector embeddings. This opens the door to a new type of search technique called vector search that retrieves objects based on similarity. While many traditional databases support storing vector embeddings to enable vector search, vector databases are AI-native, which means they are optimized to conduct lightning-fast vector searches at scale. 
+
