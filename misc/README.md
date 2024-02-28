@@ -11,7 +11,7 @@ A. 1. Use more memory => leads to more CPU=> faster processing on initial load.
 2. Use interpreted languages like Nodejs, Python etc, instead of languages like .net and java which have heavy processing JIT compilation etc on initial load.
 3. Use less dependencies in your lambda code, and keep the function lightweight.
 4. A batch job to invoke Lambda at regular intervals with a dummy payload to keep it warm.
-5. Most effective solution: Use provisoned concurrency feature of Lambda.
+5. Most effective solution: Use provisoned concurrency feature of Lambda. This will ensure that certain number of execution environments are always available to serve incoming traffic.
 
 Q. Mobile app that supports offline sync when internet comes back.
 
